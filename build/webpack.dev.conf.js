@@ -1,11 +1,12 @@
 const path = require('path');
+const webpack = require('webpack');
 const merge = require('webpack-merge');
 const baseConfig = require('./webpack.base.conf');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const resolve = dir => path.resolve(__dirname, '..', dir);
 
 module.exports = merge(baseConfig, {
-  mode: 'production',
+  mode: 'development',
   output: {
     filename: '[name]_[hash].js',
     path: resolve('dist')
@@ -30,7 +31,10 @@ module.exports = merge(baseConfig, {
     ]
   },
   plugins: [
-    new VueLoaderPlugin()
+    new VueLoaderPlugin(),
+    new webpack.DefinePlugin({
+      NODE_ENV: JSON.stringify('development')
+    })
   ],
   devServer: {
     host: 'localhost',

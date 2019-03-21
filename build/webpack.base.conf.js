@@ -16,7 +16,11 @@ module.exports = {
   },
   plugins: [
     new htmlWebpackPlugin({
-      template: resolve('index.html')
+      template: resolve('index.html'),
+      js: '/dist/vendor/vendor.dll.js'
+    }),
+    new webpack.DllReferencePlugin({
+      manifest: require(resolve('dist/vendor.manifest.json'))
     })
   ]
 }
