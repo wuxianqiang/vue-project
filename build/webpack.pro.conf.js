@@ -7,6 +7,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const htmlWebpackPlugin = require('html-webpack-plugin');
 const uglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const resolve = dir => path.resolve(__dirname, '..', dir);
 
 module.exports = merge(baseConfig, {
@@ -35,7 +36,9 @@ module.exports = merge(baseConfig, {
           {
             loader: 'url-loader',
             options: {
-              limit: 8192
+              limit: 8192,
+              name: 'images/[name].[hash:7].[ext]',
+              publicPath: './'
             }
           }
         ]
