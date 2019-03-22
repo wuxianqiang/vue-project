@@ -1,5 +1,6 @@
 <template>
   <div>
+    <img src="./assets/img/logo.jpg" alt="logo" class="logo">
     <router-view></router-view>
   </div>
 </template>
@@ -13,3 +14,9 @@ export default {
 }
 </script>
 
+<style lang="less" scoped>
+.logo {
+  width: 100%;
+  overflow: hidden;
+}
+</style>

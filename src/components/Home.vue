@@ -23,7 +23,8 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.titlt {
+.title {
   color: red;
+  font-size: 18px;
 }
 </style>

@@ -27,7 +27,7 @@ module.exports = merge(baseConfig, {
       },
       {
         test: /\.(css|less)$/,
-        use: ['vue-style-loader', 'postcss-loader', 'less-loader']
+        use: ['vue-style-loader', 'css-loader', 'postcss-loader', 'less-loader']
       },
       {
         test: /\.(png|svg|jpe?g)$/,
@@ -48,11 +48,16 @@ module.exports = merge(baseConfig, {
   },
   plugins: [
     new CleanWebpackPlugin({
-      cleanOnceBeforeBuildPatterns: ['main*.*', '!vendor', '!vendor.manifest.json']
+      cleanOnceBeforeBuildPatterns: [
+        'main*.*',
+        '!vendor',
+        '!vendor.manifest.json',
+        '!favicon.ico'
+      ]
     }),
     new htmlWebpackPlugin({
       template: resolve('index.html'),
-      js: '/vendor/vendor.dll.js'
+      js: './vendor/vendor.dll.js'
     }),
     new CopyWebpackPlugin([{
       from: 'src/assets',

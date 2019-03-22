@@ -31,6 +31,12 @@ module.exports = merge(baseConfig, {
             }
           },
           {
+            loader: 'css-loader',
+            options: {
+              sourceMap: true
+            }
+          },
+          {
             loader: 'postcss-loader',
             options: {
               sourceMap: true
@@ -64,7 +70,7 @@ module.exports = merge(baseConfig, {
   plugins: [
     new htmlWebpackPlugin({
       template: resolve('index.html'),
-      js: '/dist/vendor/vendor.dll.js'
+      js: './dist/vendor/vendor.dll.js'
     }),
     new webpack.DefinePlugin({
       NODE_ENV: JSON.stringify('development')
