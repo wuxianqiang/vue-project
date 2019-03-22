@@ -1,8 +1,5 @@
 const path = require('path');
 const webpack = require('webpack');
-const merge = require('webpack-merge');
-const baseConfig = require('./webpack.base.conf');
-const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const resolve = dir => path.resolve(__dirname, '..', dir);
 const libraryName = '[name]_library'
 

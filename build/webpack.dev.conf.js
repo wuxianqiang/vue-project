@@ -2,7 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 const merge = require('webpack-merge');
 const baseConfig = require('./webpack.base.conf');
-const VueLoaderPlugin = require('vue-loader/lib/plugin');
+const htmlWebpackPlugin = require('html-webpack-plugin');
 const resolve = dir => path.resolve(__dirname, '..', dir);
 
 module.exports = merge(baseConfig, {
@@ -31,7 +31,10 @@ module.exports = merge(baseConfig, {
     ]
   },
   plugins: [
-    new VueLoaderPlugin(),
+    new htmlWebpackPlugin({
+      template: resolve('index.html'),
+      js: '/dist/vendor/vendor.dll.js'
+    }),
     new webpack.DefinePlugin({
       NODE_ENV: JSON.stringify('development')
     })
