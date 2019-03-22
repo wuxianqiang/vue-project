@@ -28,7 +28,12 @@ module.exports = merge(baseConfig, {
       },
       {
         test: /\.(css|less)$/,
-        use: ['vue-style-loader', 'css-loader', 'postcss-loader', 'less-loader']
+        use: [{
+          loader: MiniCssExtractPlugin.loader,
+          options: {
+            publicPath: './'
+          }
+        }, 'css-loader', 'postcss-loader', 'less-loader']
       },
       {
         test: /\.(png|svg|jpe?g)$/,
@@ -62,12 +67,15 @@ module.exports = merge(baseConfig, {
       template: resolve('index.html'),
       js: './vendor/vendor.dll.js'
     }),
-    new CopyWebpackPlugin([{
-      from: 'src/assets',
-      to: 'assets'
-    }]),
+    // new CopyWebpackPlugin([{
+    //   from: 'src/assets',
+    //   to: 'assets'
+    // }]),
     new webpack.DefinePlugin({
       NODE_ENV: JSON.stringify('production')
+    }),
+    new MiniCssExtractPlugin({
+      filename: 'style/style.css'
     })
   ],
   optimization: {
