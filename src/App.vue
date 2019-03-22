@@ -1,16 +1,12 @@
 <template>
   <div>
-    <hello-world></hello-world>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import HelloWorld from 'components/HelloWorld'
 
 export default {
-  components: {
-    HelloWorld
-  },
   mounted () {
     console.log('hello world')
   }

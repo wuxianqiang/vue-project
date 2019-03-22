@@ -5,6 +5,8 @@ const baseConfig = require('./webpack.base.conf');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const htmlWebpackPlugin = require('html-webpack-plugin');
+const uglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const resolve = dir => path.resolve(__dirname, '..', dir);
 
 module.exports = merge(baseConfig, {
@@ -24,10 +26,11 @@ module.exports = merge(baseConfig, {
         loader: 'babel-loader'
       },
       {
-        test: /\.css$/,
+        test: /\.(css|less)$/,
         use: [
           'vue-style-loader',
-          'css-loader'
+          'css-loader',
+          'less-loader'
         ]
       }
     ]
@@ -47,5 +50,11 @@ module.exports = merge(baseConfig, {
     new webpack.DefinePlugin({
       NODE_ENV: JSON.stringify('production')
     })
-  ]
+  ],
+  optimization: {
+    minimizer: [
+      new uglifyJsPlugin({}),
+      new OptimizeCssAssetsPlugin({})
+    ]
+  }
 })

@@ -22,10 +22,26 @@ module.exports = merge(baseConfig, {
         loader: 'babel-loader'
       },
       {
-        test: /\.css$/,
+        test: /\.(css|less)$/,
         use: [
-          'vue-style-loader',
-          'css-loader'
+          {
+            loader: 'vue-style-loader',
+            options: {
+              sourceMap: true
+            }
+          },
+          {
+            loader: 'css-loader',
+            options: {
+              sourceMap: true
+            }
+          },
+          {
+            loader: 'less-loader',
+            options: {
+              sourceMap: true
+            }
+          }
         ]
       }
     ]
@@ -41,7 +57,6 @@ module.exports = merge(baseConfig, {
   ],
   devServer: {
     host: 'localhost',
-    port: 8080,
-    open: true
-  },
+    port: 8080
+  }
 })
