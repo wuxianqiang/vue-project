@@ -31,7 +31,7 @@ module.exports = merge(baseConfig, {
             }
           },
           {
-            loader: 'css-loader',
+            loader: 'postcss-loader',
             options: {
               sourceMap: true
             }
@@ -43,6 +43,21 @@ module.exports = merge(baseConfig, {
             }
           }
         ]
+      },
+      {
+        test: /\.(png|svg|jpe?g)$/,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 8192
+            }
+          }
+        ]
+      },
+      {
+        test: /\.(woff|woff2|eot|ttf|otf)$/,
+        loader: 'file-loader'
       }
     ]
   },

@@ -27,11 +27,22 @@ module.exports = merge(baseConfig, {
       },
       {
         test: /\.(css|less)$/,
+        use: ['vue-style-loader', 'postcss-loader', 'less-loader']
+      },
+      {
+        test: /\.(png|svg|jpe?g)$/,
         use: [
-          'vue-style-loader',
-          'css-loader',
-          'less-loader'
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 8192
+            }
+          }
         ]
+      },
+      {
+        test: /\.(woff|woff2|eot|ttf|otf)$/,
+        loader: 'file-loader'
       }
     ]
   },
